@@ -1,5 +1,5 @@
-// FileUp v1.0.2
-// more on http://github.com/haggen/fileup
+// fileupload v1.0.1
+// more on https://github.com/lfy55/fileupload
 ;(function(root) {
 
   'use strict';
@@ -100,6 +100,9 @@
 
       item.status = 'uploading';
       this.emit('upload', item);
+      if(this.queue.length == 0) {// 添加文件上传结束后返回所有文件结果的事件
+        this.emit('end', this.items);
+      }
     },
 
     on: function(event, callback) {
