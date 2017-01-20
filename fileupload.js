@@ -77,6 +77,9 @@
       item.xhr.addEventListener('loadend', proxy(this, function(e) {
         this.emit('done', item, e);
         this.working -= 1;
+		if(this.queue.length == 0) {// 添加文件上传结束后返回所有文件结果的事件
+			this.emit('end', this.items);
+		}
         this.work();
       }));
 
@@ -100,9 +103,6 @@
 
       item.status = 'uploading';
       this.emit('upload', item);
-      if(this.queue.length == 0) {// 添加文件上传结束后返回所有文件结果的事件
-        this.emit('end', this.items);
-      }
     },
 
     on: function(event, callback) {
