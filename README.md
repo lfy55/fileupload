@@ -10,18 +10,21 @@
 - `field`：String-可选（默认file）-文件上传name标识
 
 ## 插件包含的监听事件：
-- add：添加文件事件（回调函数的参数item）
-- upload：文件上传开始事件（回调函数的参数item）
-- success：文件上传成功事件（回调函数的参数item，event）
-- error：文件上传失败事件（回调函数的参数item，event）
-- abort：终止文件上传事件（回调函数的参数item，event）
-- progress：文件上传过程事件（回调函数的参数item，event）
-- done：文件上传结束事件（回调函数的参数item，event）
+- add：添加文件事件（回调函数的参数item-当前文件）
+- upload：文件上传开始事件（回调函数的参数item-当前文件）
+- success：文件上传成功事件（回调函数的参数item-当前文件，event）
+- error：文件上传失败事件（回调函数的参数item-当前文件，event）
+- abort：终止文件上传事件（回调函数的参数item-当前文件，event）
+- progress：文件上传过程事件（回调函数的参数item-当前文件，event）
+- done：文件上传结束（无论成功，失败，终止）事件（回调函数的参数item-当前文件，event）
+- end: 待上传列表中所有文件上传结束（无论成功，失败，终止）事件（回调函数的参数items-上传列表）
 
 ## 插件包含的函数：
 - add：参数（File file）-将文件对象添加到队列中
 - on：参数（String event，Function callback）-给文件上传对象添加事件监听
 - work：参数（无）-开始讲队列中的文件上传
+- resetList: 参数（无）-清空待上传列表
+- deleteFile: 参数（String fileName）-从待上传列表中删除指定文件名的文件
 
 ## 对插件的改动
 我在对插件进行了一些的扩展，完善了插件的文件队列清空和根据文件名将文件从队列中删除的方法。
